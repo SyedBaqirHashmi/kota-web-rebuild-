@@ -10,6 +10,7 @@ import { Hero } from '@/components/sections/Hero';
 import { Loader } from '@/components/sections/Loader';
 import { Nav } from '@/components/sections/Nav';
 import { Playreel } from '@/components/sections/Playreel';
+import { ProjectReels } from '@/components/sections/ProjectReels';
 import { Services } from '@/components/sections/Services';
 import { TemplatesGallery } from '@/components/sections/TemplatesGallery';
 import { Testimonials } from '@/components/sections/Testimonials';
@@ -33,6 +34,7 @@ export default function HomePage(): JSX.Element {
             <Services content={site.services} contactHref={site.nav.cta.href} />
             <Testimonials items={site.testimonials} />
             <TemplatesGallery content={site.templates} />
+            <ProjectReels content={site.projectReels} />
             <Faq content={site.faq} email={site.brand.email} />
           </main>
           <CtaFooter cta={site.cta} footer={site.footer} nav={site.nav} brand={site.brand} />

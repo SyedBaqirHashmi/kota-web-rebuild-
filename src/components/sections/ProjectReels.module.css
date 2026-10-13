@@ -1,0 +1,90 @@
+.section {
+  background: var(--c-night);
+  color: var(--c-paper);
+  padding: 144px var(--gutter) 160px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) minmax(280px, 2fr) minmax(180px, 0.8fr);
+  gap: 32px;
+  align-items: end;
+  padding-bottom: 64px;
+  border-bottom: 1px solid var(--c-hairline-dark);
+}
+
+.header > p:first-child { color: var(--c-paper-muted); }
+.count { text-align: right; color: var(--c-paper-muted); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 64px 20px;
+  padding-top: 64px;
+}
+
+.card {
+  min-width: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 680px;
+}
+.card[data-featured='true'] { grid-column: span 2; }
+
+.media {
+  position: relative;
+  aspect-ratio: 9 / 14;
+  overflow: hidden;
+  background: #101010;
+}
+
+.card[data-featured='true'] .media { aspect-ratio: 16 / 10; }
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out-soft), filter 700ms var(--ease-out-soft);
+}
+
+.number {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--c-paper);
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+}
+
+.meta p { color: var(--c-paper-muted); text-align: right; }
+
+@media (hover: hover) {
+  .card:hover .video { transform: scale(1.025); filter: saturate(1.08); }
+}
+
+@media (max-width: 1199.98px) {
+  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 809.98px) {
+  .section { padding-top: 96px; padding-bottom: 104px; }
+  .header { grid-template-columns: 1fr; gap: 18px; padding-bottom: 40px; }
+  .count { text-align: left; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 10px; padding-top: 40px; }
+  .card[data-featured='true'] { grid-column: span 2; }
+  .meta { display: block; }
+  .meta p { margin-top: 4px; text-align: left; }
+}

@@ -8,13 +8,9 @@ import type { ImageAsset, MediaVideo, SiteContent } from '@/types/content';
 
 const EM_DASH = '\u2014';
 
-const video = (name: string): MediaVideo => ({
-  // Order matters: LazyVideo picks the first type the browser can decode.
-  sources: [
-    { src: `/media/video/${name}.webm`, type: 'video/webm; codecs="vp9"' },
-    { src: `/media/video/${name}.mp4`, type: 'video/mp4; codecs="avc1.42E01E"' },
-  ],
-  poster: `/media/video/${name}-poster.jpg`,
+const projectVideo = (name: string): MediaVideo => ({
+  sources: [{ src: `/media/projects/${name}.mp4`, type: 'video/mp4' }],
+  poster: `/media/projects/${name}-poster.jpg`,
 });
 
 const introImage = (n: number): ImageAsset => ({
@@ -26,40 +22,37 @@ const introImage = (n: number): ImageAsset => ({
 
 export const site: SiteContent = {
   brand: {
-    name: 'Your Studio',
-    wordmark: 'Your Studio',
-    email: 'hello@example.com',
+    name: 'Code by Raza',
+    wordmark: 'Code by Raza',
+    email: 'SyedBaqirHashmi@users.noreply.github.com',
     timeZone: 'Asia/Karachi',
   },
   nav: {
     links: [
       { label: 'Home', href: '/' },
-      { label: 'Work', href: '#templates' },
+      { label: 'Work', href: '#projects' },
       { label: 'Insights (Soon)', href: '#', disabled: true },
     ],
     socials: [
-      { label: 'X (Twitter)', href: 'https://x.com' },
-      { label: 'Instagram', href: 'https://instagram.com' },
-      { label: 'Threads', href: 'https://threads.net' },
-      { label: 'LinkedIn', href: 'https://linkedin.com' },
+      { label: 'GitHub', href: 'https://github.com/SyedBaqirHashmi' },
     ],
-    cta: { label: 'Get in touch', href: 'mailto:hello@example.com' },
+    cta: { label: 'View GitHub', href: 'https://github.com/SyedBaqirHashmi' },
   },
   intro: { images: [1, 2, 3, 4, 5, 6, 7, 8].map(introImage) },
   hero: {
-    badge: 'Independent design studio',
+    badge: 'Digital experiences by Syed Baqir Raza',
     availability: 'Available for new projects',
-    seoTitle: `Turning ideas into high ${EM_DASH} impact websites`,
+    seoTitle: `Turning bold ideas into high ${EM_DASH} impact digital experiences`,
     rows: [
       [{ kind: 'text', text: 'Turning ideas' }, { kind: 'gap' }, { kind: 'text', text: 'into' }],
       [{ kind: 'video' }, { kind: 'text', text: `high ${EM_DASH} impact` }],
-      [{ kind: 'text', text: 'Motion' }, { kind: 'icon', src: '/media/spark.svg', alt: '' }, { kind: 'text', text: 'websites' }],
+      [{ kind: 'text', text: 'Digital' }, { kind: 'icon', src: '/media/spark.svg', alt: '' }, { kind: 'text', text: 'experiences' }],
     ],
-    tagline: { strong: 'Your Studio', rest: 'creates motion-rich, interactive websites that engage users and boost conversions.' },
+    tagline: { strong: 'Code by Raza', rest: 'creates motion-rich websites, brand experiences and digital campaigns built to make an impression.' },
     background: { src: '/media/hero-bg.jpg', alt: '', width: 2400, height: 1350 },
-    video: video('reel'),
+    video: projectVideo('122985'),
   },
-  playreel: { duration: '[ 00:06 ]', year: '\u00a92026', video: video('reel') },
+  playreel: { duration: '[ 00:23 ]', year: '\u00a92026', video: projectVideo('117685') },
   about: {
     label: 'About',
     statement:
@@ -75,61 +68,93 @@ export const site: SiteContent = {
     items: [
       {
         id: 'landing',
-        name: 'Landing Page',
+        name: 'Web Experience',
         timeline: '1-2 weeks',
         deliverables: '1 page',
         description: 'A single page built to earn its traffic. For launches, campaigns and paid ads. Conversion-led and shipped fast.',
-        priceFrom: '$4,000',
-        video: video('service-1'),
+        priceFrom: 'Project based',
+        video: projectVideo('117667'),
       },
       {
         id: 'marketing',
-        name: 'Marketing Site',
+        name: 'Brand & Campaign',
         timeline: '4-6 weeks',
         deliverables: '5+ pages',
         description: 'A full website that tells your story and guides visitors through the right journey: Home, Product, Pricing, About.',
-        priceFrom: '$6,000',
-        video: video('service-2'),
+        priceFrom: 'Project based',
+        video: projectVideo('117668'),
       },
       {
         id: 'motion',
-        name: 'Motion Design',
+        name: 'Motion & Content',
         timeline: '1-2 weeks',
         deliverables: 'Video, explainer or animation',
         description: 'Motion that makes your product feel alive. Launch videos, explainers and animation systems for your site.',
-        priceFrom: '$3,000',
-        video: video('service-3'),
+        priceFrom: 'Project based',
+        video: projectVideo('117670'),
       },
     ],
   },
   testimonials: [
     {
       quote:
-        '"The final website turned out exactly as I envisioned it. Communication was excellent throughout; the team was quick to respond, clear about what was going on, and worked hard to hit our goals."',
-      author: `${EM_DASH} Client Name, Company`,
+        '"Every project begins with the business goal, then earns its visual language through strategy, interaction and story."',
+      author: `${EM_DASH} Strategy before decoration`,
     },
     {
       quote:
-        '"They helped us from the ground up, refining and carefully building an eye-catching landing page with wonderful animations, themes and font selections. Everything shows expertise."',
-      author: `${EM_DASH} Client Name, Company`,
+        '"Motion should guide attention, clarify hierarchy and make the experience memorable without getting in the user\u2019s way."',
+      author: `${EM_DASH} Motion with purpose`,
     },
     {
       quote:
-        '"Professional, dedicated and thoughtful. Meticulous about every detail and genuinely invested in the product. We will keep working together on the next projects."',
-      author: `${EM_DASH} Client Name, Company`,
+        '"The strongest digital work connects brand thinking, content, design and development as one continuous system."',
+      author: `${EM_DASH} Built end to end`,
     },
   ],
   templates: {
     label: 'Featured Work',
     allHref: '#',
-    items: ['Orbit', 'Ledger', 'Cortex', 'Atrium', 'Folio'].map((name, i) => ({
+    items: ['Riverton', 'Noma', 'Artisan', 'Fragrance Lab', 'Ritual'].map((name, i) => ({
       id: name.toLowerCase(),
       name,
-      category: ['Agency', 'Finance', 'AI', 'Studio', 'Portfolio'][i] ?? 'Agency',
-      price: '$99',
+      category: ['Real estate', 'Architecture', 'Luxury', 'E-commerce', 'Beauty'][i] ?? 'Digital',
+      price: '2026',
       href: '#',
       background: { src: `/media/templates/tpl-${i + 1}-bg.jpg`, alt: '', width: 2400, height: 1350 },
       lens: { src: `/media/templates/tpl-${i + 1}-lens.jpg`, alt: `${name} preview`, width: 1000, height: 1000 },
+    })),
+  },
+  projectReels: {
+    label: 'Project archive',
+    title: 'Twenty glimpses into the work.',
+    items: ([
+      ['117665', 'Luxury Property', 'Real estate'],
+      ['117667', 'Astra', 'Automotive experience'],
+      ['117668', 'Noma', 'Architecture'],
+      ['117670', 'Artisan', 'Luxury commerce'],
+      ['117672', 'Riverton', 'Construction'],
+      ['117675', 'Fleur', 'Editorial commerce'],
+      ['117676', 'Rise', 'Property experience'],
+      ['117677', 'Salem', 'Real estate'],
+      ['117678', 'Built for More', 'Architecture'],
+      ['117679', 'Arena', 'Sports venue'],
+      ['117680', 'Fragrance Lab', 'E-commerce'],
+      ['117682', 'Villa Study I', 'Property'],
+      ['117683', 'Villa Study II', 'Property'],
+      ['117684', 'Ritual', 'Beauty campaign'],
+      ['117685', 'Between Frames', 'Motion showreel'],
+      ['117687', 'Minimal Portfolio', 'Interactive design'],
+      ['122892', 'Premium Web Details', 'Creative direction'],
+      ['122904', 'Portfolio Interface', 'Interactive design'],
+      ['122958', 'Experimental Archive', 'WebGL experience'],
+      ['122985', 'Cinematic Sequence', 'Motion design'],
+    ] as const).map(([id, title, category], index) => ({
+      id,
+      title,
+      category,
+      video: projectVideo(id),
+      featured: index === 14 || index === 18 || index === 19,
     })),
   },
   faq: {
@@ -146,6 +171,6 @@ export const site: SiteContent = {
       { id: 'after', question: 'What happens after the site launches?', answer: 'Two weeks of post-launch support are included, with ongoing care plans available.' },
     ],
   },
-  cta: { title: 'Let\u2019s get started!', button: { label: 'Start a project', href: 'mailto:hello@example.com' } },
-  footer: { credits: ['Designed by Your Studio', 'Built with Next.js', 'Motion by Motion + Lenis'] },
+  cta: { title: 'Let\u2019s build something memorable.', button: { label: 'View GitHub', href: 'https://github.com/SyedBaqirHashmi' } },
+  footer: { credits: ['Designed by Syed Baqir Raza', 'Built with Next.js', 'Motion by Motion + Lenis'] },
 };

@@ -65,6 +65,14 @@ export interface TemplateItem {
   lens: ImageAsset;
 }
 
+export interface ProjectReel {
+  id: string;
+  title: string;
+  category: string;
+  video: MediaVideo;
+  featured?: boolean;
+}
+
 export interface FaqItem {
   id: string;
   question: string;
@@ -89,6 +97,7 @@ export interface SiteContent {
   services: { label: string; items: readonly Service[] };
   testimonials: readonly Testimonial[];
   templates: { label: string; items: readonly TemplateItem[]; allHref: string };
+  projectReels: { label: string; title: string; items: readonly ProjectReel[] };
   faq: { title: string; askLabel: string; items: readonly FaqItem[] };
   cta: { title: string; button: NavLink };
   footer: { credits: readonly string[] };
