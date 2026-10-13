@@ -1,0 +1,10 @@
+/* Follows the morphing clip; gradient matches the original "Faded Overlay". */
+.overlay {
+  display: none;
+  position: fixed;
+  z-index: var(--z-morph-overlay);
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.45) 49.7%, rgba(0, 0, 0, 0.08) 100%);
+  contain: strict;
+}

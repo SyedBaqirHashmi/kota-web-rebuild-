@@ -1,0 +1,62 @@
+@import '../styles/tokens.css';
+
+/* ---- Lenis (inlined: the package does not export its stylesheet) ------- */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ---- Reset ------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--c-canvas);
+  color: var(--c-ink);
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, p, figure, blockquote, dl, dd { margin: 0; }
+h1, h2, h3, h4 { font-weight: var(--fw-regular); }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+img, video { display: block; max-width: 100%; }
+img { -webkit-user-drag: none; }  /* the original injects the same rule via a plugin */
+:focus-visible { outline: 2px solid var(--c-accent); outline-offset: 3px; }
+
+/* ---- Utilities --------------------------------------------------------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.t-micro { font-size: var(--t-micro-size); line-height: var(--t-micro-lh); letter-spacing: var(--t-micro-ls); }
+.t-small { font-size: var(--t-small-size); line-height: var(--t-small-lh); letter-spacing: var(--t-small-ls); }
+.t-lead  { font-size: var(--t-lead-size);  line-height: var(--t-lead-lh);  letter-spacing: var(--t-lead-ls); font-weight: var(--fw-light); }
+.t-h5    { font-size: var(--t-h5-size);    line-height: var(--t-h5-lh);    letter-spacing: var(--t-h5-ls); }
+.t-h4    { font-size: var(--t-h4-size);    line-height: var(--t-h4-lh);    letter-spacing: var(--t-h4-ls); }
+.t-h3    { font-size: var(--t-h3-size);    line-height: var(--t-h3-lh);    letter-spacing: var(--t-h3-ls); }
+.t-h2    { font-size: var(--t-h2-size);    line-height: var(--t-h2-lh);    letter-spacing: var(--t-h2-ls); }
+.t-h1    { font-size: var(--t-h1-size);    line-height: var(--t-h1-lh);    letter-spacing: var(--t-h1-ls); }
+.t-display { font-size: var(--t-display-size); line-height: var(--t-display-lh); letter-spacing: var(--t-display-ls); }
+
+/* Breakpoint visibility - same strategy as Framer's `hidden-<hash>` classes:
+   render both trees on the server (no hydration mismatch), hide with CSS.
+   display:none trees never intersect, so their lazy videos never load. */
+@media (max-width: 809.98px) { .only-desktop { display: none !important; } }
+@media (min-width: 810px)    { .only-phone   { display: none !important; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

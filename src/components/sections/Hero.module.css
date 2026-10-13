@@ -1,0 +1,121 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  background: var(--c-night);
+  color: var(--c-paper);
+  overflow: clip;            /* `clip` (not hidden): no scroll container, sticky/fixed children unaffected */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+
+.bg { position: absolute; inset: -5% 0 0; z-index: 0; will-change: transform, opacity; }
+.bgImage { object-fit: cover; }
+
+/* No z-index here on purpose: a z-index would make .content a stacking context and
+   trap the fixed morph clip (z 7) below the play-reel backdrop (z 3). DOM order
+   already paints it above .bg. */
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;     /* the whole headline block is right-aligned */
+  gap: 16px;
+  margin-top: 6vh;
+}
+
+.badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--t-micro-size);
+  line-height: var(--t-micro-lh);
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.title { display: flex; flex-direction: column; align-items: flex-end; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--t-display-size);
+  line-height: var(--t-display-lh);
+  letter-spacing: var(--t-display-ls);
+  font-weight: var(--fw-regular);
+  white-space: nowrap;
+}
+.word { display: inline-block; }
+.gap { display: inline-block; width: 40px; }
+.icon { display: inline-flex; width: 0.62em; height: 0.62em; }
+.icon img { width: 100%; height: 100%; }
+
+/* 142 px inline clip, 16:9 - the morph source */
+.videoSlot { display: inline-flex; flex: none; }
+.video {
+  width: 142px;
+  aspect-ratio: 1.77;
+  height: auto;
+  object-fit: cover;
+  background: #111;
+}
+
+.availability { font-size: var(--t-small-size); line-height: var(--t-small-lh); }
+
+.bottom {
+  position: absolute;
+  inset: auto var(--gutter) 24px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+}
+.clock { justify-self: start; }
+.tagline { justify-self: center; text-align: center; max-width: 34ch; }
+.muted { color: var(--c-paper-muted); }
+
+.scrollCue { justify-self: end; display: flex; align-items: flex-end; gap: 10px; height: 64px; }
+.scrollLabel {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: var(--t-micro-size);
+}
+.scrollTrack {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  background: var(--c-paper-faint);
+  overflow: hidden;
+}
+/* Looping fill that drains downward. transform-only = compositor thread. */
+.scrollLine {
+  position: absolute;
+  inset: 0;
+  background: var(--c-paper);
+  transform-origin: top;
+  animation: scrollCue 2.2s var(--ease-in-out-film) infinite;
+}
+@keyframes scrollCue {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  45%  { transform: scaleY(1); transform-origin: top; }
+  55%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@media (max-width: 809.98px) {
+  .content { align-items: stretch; margin-top: 0; }
+  .title { align-items: flex-end; }
+  .row { gap: 10px; }
+  .video { width: 96px; }
+  .gap { width: 16px; }
+  .bottom { grid-template-columns: 1fr; justify-items: center; gap: 24px; }
+  .scrollCue { order: -1; justify-self: center; }
+  .scrollLabel { display: none; }
+}

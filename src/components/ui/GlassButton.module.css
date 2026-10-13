@@ -1,0 +1,70 @@
+.root {
+  position: relative;
+  isolation: isolate;               /* own stacking context: layers can't leak z-index */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  font-size: var(--t-small-size);
+  line-height: var(--t-small-lh);
+  font-weight: var(--fw-medium);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur-base) var(--ease-out-soft);
+}
+.root:active { transform: scale(0.97); }
+
+.sm   { height: 36px; padding: 0 18px; }
+.md   { height: 44px; padding: 0 24px; }
+.icon { height: 36px; width: 36px; padding: 0; }
+
+.fill, .fog, .inner, .highlights {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* 1. fill + shadow: the frosted body. backdrop-filter is the expensive layer,
+      so it is never animated; only its siblings change on hover. */
+.fill {
+  z-index: -4;
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  backdrop-filter: blur(var(--glass-blur));
+}
+/* 2. fog: a soft wash that thickens on hover (opacity only). */
+.fog {
+  z-index: -3;
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out-soft);
+}
+/* 3. inner shadow: side vignettes that give the pill its "curved" depth. */
+.inner { z-index: -2; }
+/* 4. highlights: thin bright rims top and bottom (six stacked inset shadows). */
+.highlights {
+  z-index: -1;
+  box-shadow: var(--glass-highlights);
+  opacity: 0.55;
+  transition: opacity var(--dur-base) var(--ease-out-soft);
+}
+
+.label { position: relative; display: inline-flex; align-items: center; gap: 8px; }
+
+/* ---- tones ---- */
+.dark { color: var(--c-paper); }
+.dark .fill  { background: var(--glass-fill-dark); box-shadow: var(--glass-ring-dark); }
+.dark .fog   { background: rgba(255, 255, 255, 0.12); }
+.dark .inner { box-shadow: var(--glass-inner-shadow-dark); }
+.dark .highlights { opacity: 0.22; }
+
+.light { color: var(--c-ink); }
+.light .fill  { background: var(--glass-fill-light); box-shadow: var(--glass-ring-light); }
+.light .fog   { background: rgba(255, 255, 255, 0.7); }
+.light .inner { box-shadow: var(--glass-inner-shadow-light); }
+
+@media (hover: hover) {
+  .root:hover .fog { opacity: 1; }
+  .root:hover .highlights { opacity: 0.9; }
+  .dark:hover .highlights { opacity: 0.4; }
+}

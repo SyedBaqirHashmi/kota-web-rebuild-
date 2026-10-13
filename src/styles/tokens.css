@@ -1,0 +1,101 @@
+/*
+ * Centralized brand tokens. Every color, type size, radius, shadow and z-layer
+ * used by the components lives here. Values are lifted from the live site's
+ * Framer tokens (see TEARDOWN.md, "Design tokens").
+ */
+:root {
+  /* ---- Color ---------------------------------------------------------- */
+  --c-canvas: #efefef;            /* light page background */
+  --c-ink: rgba(0, 0, 0, 0.96);   /* primary text on light */
+  --c-ink-muted: #656565;
+  --c-ink-faint: rgba(0, 0, 0, 0.08);
+  --c-night: #000000;             /* dark sections */
+  --c-paper: rgba(255, 255, 255, 0.96); /* primary text on dark */
+  --c-paper-muted: rgba(255, 255, 255, 0.6);
+  --c-paper-faint: rgba(255, 255, 255, 0.15);
+  --c-card: #ffffff;
+  --c-accent: #042db4;            /* deep blue accent */
+  --c-hairline-dark: rgba(255, 255, 255, 0.2);
+  --c-hairline-light: rgba(0, 0, 0, 0.14);
+
+  /* ---- Typography ----------------------------------------------------- */
+  /* Original uses TWK Lausanne (commercial). Inter Tight is the free stand-in;
+     drop your licensed font into --font-sans and nothing else changes. */
+  --font-sans: 'Inter Tight Variable', 'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+
+  /* size / line-height / tracking triplets (desktop) */
+  --t-display-size: 88px;  --t-display-lh: 96px;  --t-display-ls: -0.03em;
+  --t-h1-size: 72px;       --t-h1-lh: 80px;       --t-h1-ls: -0.03em;
+  --t-h2-size: 56px;       --t-h2-lh: 64px;       --t-h2-ls: -0.03em;
+  --t-h3-size: 44px;       --t-h3-lh: 52px;       --t-h3-ls: -0.02em;
+  --t-h4-size: 36px;       --t-h4-lh: 44px;       --t-h4-ls: -0.02em;
+  --t-h5-size: 28px;       --t-h5-lh: 36px;       --t-h5-ls: -0.01em;
+  --t-lead-size: 20px;     --t-lead-lh: 28px;     --t-lead-ls: -0.005em;
+  --t-body-size: 16px;     --t-body-lh: 24px;     --t-body-ls: -0.005em;
+  --t-small-size: 14px;    --t-small-lh: 20px;    --t-small-ls: -0.005em;
+  --t-micro-size: 12px;    --t-micro-lh: 16px;    --t-micro-ls: -0.005em;
+
+  /* ---- Layout --------------------------------------------------------- */
+  --gutter: 40px;
+  --max-w: 1920px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Glass ("liquid glass" buttons + menu) -------------------------- */
+  --glass-blur: 10px;
+  --glass-fill-dark: rgba(255, 255, 255, 0.08);
+  --glass-fill-light: rgba(255, 255, 255, 0.55);
+  --glass-ring-dark: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  --glass-ring-light: 1px 0 0 0 rgba(0, 0, 0, 0.14), -1px 0 0 0 rgba(0, 0, 0, 0.14),
+    0 0 0 1px rgba(0, 0, 0, 0.14), 0 8px 16px 0 rgba(0, 0, 0, 0.02);
+  --glass-highlights: inset 0 4px 1px -4px #fff, inset 0 -4px 1px -4px #fff,
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.88), inset 0 -1px 0 0 rgba(255, 255, 255, 0.88),
+    inset 0 40px 10px -40px rgba(255, 255, 255, 0.96), inset 0 -40px 10px -40px rgba(255, 255, 255, 0.96);
+  --glass-inner-shadow-dark: inset 20px 0 20px -30px rgba(0, 0, 0, 0.3), inset -20px 0 20px -30px rgba(0, 0, 0, 0.3);
+  --glass-inner-shadow-light: inset 20px 0 20px -30px rgba(0, 0, 0, 0.12),
+    inset -20px 0 20px -30px rgba(0, 0, 0, 0.12), inset 0 40px 30px -40px rgba(0, 0, 0, 0.08);
+
+  /* ---- Motion (CSS side; JS side lives in src/lib/motion.ts) ---------- */
+  --ease-out-soft: cubic-bezier(0.12, 0.23, 0.5, 1);
+  --ease-in-out-film: cubic-bezier(0.3, 0, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+
+  /* ---- Z layers (one place, no magic numbers in components) ----------- */
+  --z-base: 1;
+  --z-morph-video: 7;
+  --z-morph-overlay: 8;
+  --z-section-ui: 9;
+  --z-nav: 50;
+  --z-menu: 60;
+  --z-modal: 90;
+  --z-loader: 100;
+}
+
+/* Tablet: 810-1199 */
+@media (max-width: 1199.98px) {
+  :root {
+    --gutter: 24px;
+    --t-display-size: 64px; --t-display-lh: 72px;
+    --t-h1-size: 56px;      --t-h1-lh: 64px;
+    --t-h2-size: 44px;      --t-h2-lh: 52px;
+    --t-h4-size: 28px;      --t-h4-lh: 36px;
+  }
+}
+
+/* Phone: < 810 */
+@media (max-width: 809.98px) {
+  :root {
+    --gutter: 16px;
+    --t-display-size: 40px; --t-display-lh: 44px;
+    --t-h1-size: 48px;      --t-h1-lh: 56px;
+    --t-h2-size: 36px;      --t-h2-lh: 44px;
+    --t-h3-size: 32px;      --t-h3-lh: 40px;
+    --t-h4-size: 24px;      --t-h4-lh: 32px;
+    --t-h5-size: 22px;      --t-h5-lh: 28px;
+  }
+}

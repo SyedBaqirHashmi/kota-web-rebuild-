@@ -1,0 +1,83 @@
+.section { position: relative; background: var(--c-canvas); color: var(--c-ink); }
+
+/* ---- sticky stage ---- */
+.track { position: relative; height: calc(var(--count) * 100vh); }
+.stage {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.infoCol { position: relative; padding: 96px var(--gutter) 40px; }
+.infoMotion { height: 100%; }
+.videoCol { padding: 8px 8px 8px 0; height: 100vh; }
+.frame {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--c-night);
+  isolation: isolate;
+}
+.clip {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out-soft);  /* opacity-only crossfade */
+}
+.clip[data-active='true'] { opacity: 1; }
+.frameShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.45));
+  pointer-events: none;
+}
+.index {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  text-align: right;
+  color: var(--c-paper);
+}
+.index li { opacity: 0.55; transition: opacity var(--dur-base) var(--ease-out-soft); }
+.index li[data-active='true'] { opacity: 1; }
+.dash { display: inline-block; opacity: 0; transition: opacity var(--dur-base) var(--ease-out-soft); }
+.index li[data-active='true'] .dash { opacity: 1; }
+
+.triggers { position: absolute; inset: 0; pointer-events: none; }
+.trigger { height: 100vh; }
+
+/* ---- shared info block ---- */
+/* Two auto margins split the free space: title block floats to ~40% height,
+   specs follow it, price pins to the bottom (matches the original's rhythm). */
+.info { height: 100%; display: flex; flex-direction: column; max-width: 560px; }
+.info > :first-child { margin-top: auto; }
+.priceRow { margin-top: auto; }
+.kicker { color: var(--c-ink-muted); margin-bottom: 8px; }
+.name { margin-top: 8px; }
+.specs {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-hairline-light);
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+}
+.specCol { display: flex; flex-direction: column; gap: 14px; }
+.specCol dt { color: var(--c-ink-muted); }
+.specCol dd { margin: 2px 0 0; }
+.description { max-width: 40ch; }
+.priceRow { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; padding-top: 40px; }
+.price { letter-spacing: -0.03em; }
+
+/* ---- phone ---- */
+.stack { display: flex; flex-direction: column; gap: 64px; padding: 96px var(--gutter); }
+.card { display: flex; flex-direction: column; gap: 24px; }
+.cardClip { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-md); background: var(--c-night); }
+.card .info { height: auto; }
+.card .info > :first-child, .card .priceRow { margin-top: 0; }

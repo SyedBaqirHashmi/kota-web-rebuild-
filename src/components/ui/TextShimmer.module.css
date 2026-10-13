@@ -1,0 +1,27 @@
+.root { position: relative; display: inline-block; user-select: none; }
+.base { margin: 0; }
+.sweep {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  color: transparent;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--shimmer-angle),
+    transparent 0%,
+    transparent var(--shimmer-from),
+    var(--shimmer-color) 50%,
+    transparent var(--shimmer-to),
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer var(--shimmer-duration) linear infinite;
+}
+@keyframes shimmer {
+  from { background-position: var(--shimmer-start); }
+  to   { background-position: var(--shimmer-end); }
+}
+@media (prefers-reduced-motion: reduce) { .sweep { display: none; } }

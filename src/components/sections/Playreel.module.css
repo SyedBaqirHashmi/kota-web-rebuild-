@@ -1,0 +1,54 @@
+.section {
+  position: relative;
+  height: 100vh;
+  min-height: 560px;
+  color: var(--c-paper);
+  overflow: clip;
+}
+.backdrop { position: absolute; inset: 0; z-index: 3; background: var(--c-night); }
+.backdropVideo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.45) 49.7%, rgba(0, 0, 0, 0.08) 100%);
+}
+
+/* Above the fixed morph clip (z 7) and its overlay (z 8). */
+.inner {
+  position: relative;
+  z-index: var(--z-section-ui);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+}
+.cluster {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+}
+.word {
+  font-size: var(--t-h1-size);
+  line-height: var(--t-h1-lh);
+  letter-spacing: var(--t-h1-ls);
+  will-change: transform;
+}
+.duration { position: absolute; left: 0; top: -22px; color: var(--c-paper-muted); }
+.year { position: absolute; right: 0; bottom: -22px; color: var(--c-paper-muted); }
+.play {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  color: var(--c-paper);
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--glass-ring-dark), var(--glass-inner-shadow-dark);
+  transition: background-color var(--dur-base) var(--ease-out-soft);
+}
+@media (hover: hover) { .play:hover { background: rgba(255, 255, 255, 0.2); } }
+@media (max-width: 809.98px) { .play { width: 64px; height: 36px; } }

@@ -1,0 +1,21 @@
+.section { background: var(--c-canvas); color: var(--c-ink); padding: 10vh var(--gutter) 10vh; }
+.row { margin: 0; min-height: 150vh; }
+.stick {
+  position: sticky;
+  top: 28vh;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 20px;
+  align-items: start;
+}
+.label, .author { color: var(--c-ink-muted); padding-top: 12px; }
+.label { grid-column: 1 / span 2; }
+.quote { grid-column: 4 / span 6; margin: 0; }
+.quote p { font-weight: var(--fw-light); }
+.author { grid-column: 11 / span 2; text-align: right; }
+
+@media (max-width: 809.98px) {
+  .row { min-height: 110vh; }
+  .stick { top: 18vh; grid-template-columns: 1fr; row-gap: 12px; }
+  .label, .author, .quote { grid-column: 1; text-align: left; padding-top: 0; }
+}
